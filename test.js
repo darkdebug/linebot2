@@ -73,7 +73,7 @@ router.post('/webhook', lsm.middleware(lineConfig), function(req, res){
 	req.body.events.map(function(eventData){
 		console.log(JSON.stringify(eventData));
 		//for group
-		if (eventData.type==='join'){
+		/*if (eventData.type==='join'){
 			if (eventData.source.groupId){
 				groupList.push(eventData.source.groupId);
 			} else if (eventData.source.roomId){
@@ -89,7 +89,7 @@ router.post('/webhook', lsm.middleware(lineConfig), function(req, res){
 			userList.push(eventData.source.userId);
 		} else if (eventData.type==='unfollow'){
 			removeData('user',eventData.source.userId);
-		}
+		}*/
 		//if (eventData.type ==='message'){
 			//console.log(JSON.stringify(eventData));
 		//}
@@ -110,7 +110,7 @@ router.get('/getGroupList', function(req, res){
 	res.send(JSON.stringify(resultData));
 });
 
-var client = new Client(lineConfig);
+/*var client = new Client(lineConfig);
 router.get('/send/:id/:data', function(req, res){
 	if (req.params.id==1){
 		//one man with text
@@ -118,13 +118,13 @@ router.get('/send/:id/:data', function(req, res){
 	} else if (req.params.id==2){
 		//one group with text
 		client.pushMessage(groupList[0],{type:'text',text:(req.params.data||"test")});
-	} /*else if (req.params.id==3){
+	}*/ /*else if (req.params.id==3){
 		//one man with image
 		client.pushMessage(userList[0],{type:'image',riginalContentUrl:'https://imgur.com/fimxEbi',previewImageUrl:'https://imgur.com/twDNXL9'})
 		.catch(function(error){
 			console.log(JSON.stringify(error));
 		});
-	}*/ else if (req.params.id==4){
+	}*/ /*else if (req.params.id==4){
 		//multi data with text
 		//all user
 		client.multicast(userList,{type:'text',text:(req.params.data||"test group")})
@@ -137,7 +137,7 @@ router.get('/send/:id/:data', function(req, res){
 		}
 	}
 	res.send("type:"+req.params.id+"<br>data:"+req.params.data);
-});
+});*/
 app.use("/",express.static("."));
 app.use("/",router);
 app.listen(process.env.PORT || httpport);
