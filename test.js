@@ -17,6 +17,8 @@ var initList =function (){
 	//groupList.push('C1c4cec9b20858fa4c67d83eef7f4f33d');
 };
 
+var client = new Client(lineConfig);
+
 initList();
 
 router.get("/test/:id/:data",function(req, res, next){
@@ -89,6 +91,10 @@ router.post('/webhook', lsm.middleware(lineConfig), function(req, res){
 			userList.push(eventData.source.userId);
 		} else if (eventData.type==='unfollow'){
 			removeData('user',eventData.source.userId);
+		} else if (eventData.type==='message'){
+			if ((eventData.message.text).indexOf("@GMK")!=-1){
+				client.replyMessage(eventData.replyToken,{type:'sticker',packageId:"2",stickerId:"520"});
+			}
 		}
 		//if (eventData.type ==='message'){
 			//console.log(JSON.stringify(eventData));
@@ -110,7 +116,6 @@ router.get('/getGroupList', function(req, res){
 	res.send(JSON.stringify(resultData));
 });
 
-var client = new Client(lineConfig);
 router.get('/send/:id/:data', function(req, res){
 	if (req.params.id==1){
 		//one man with text
