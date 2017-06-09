@@ -92,7 +92,7 @@ router.post('/webhook', lsm.middleware(lineConfig), function(req, res){
 		} else if (eventData.type==='unfollow'){
 			removeData('user',eventData.source.userId);
 		} else if (eventData.type==='message'){
-			if ((eventData.message.text).indexOf("@GMK")!=-1){
+			if (eventData.message && eventData.message.text && (eventData.message.text).indexOf("@GMK")!=-1){
 				client.replyMessage(eventData.replyToken,{type:'sticker',packageId:"2",stickerId:"520"});
 			}
 		}
