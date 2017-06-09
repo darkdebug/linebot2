@@ -138,5 +138,6 @@ router.get('/send/:id/:data', function(req, res){
 	}
 	res.send("type:"+req.params.id+"<br>data:"+req.params.data);
 });
+app.use("/",express.static("."));
 app.use("/",router);
 app.listen(process.env.PORT || httpport);
