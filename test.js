@@ -118,13 +118,13 @@ router.get('/send/:id/:data', function(req, res){
 	} else if (req.params.id==2){
 		//one group with text
 		client.pushMessage(groupList[0],{type:'text',text:(req.params.data||"test")});
-	}*/ /*else if (req.params.id==3){
+	} /*else if (req.params.id==3){
 		//one man with image
 		client.pushMessage(userList[0],{type:'image',riginalContentUrl:'https://imgur.com/fimxEbi',previewImageUrl:'https://imgur.com/twDNXL9'})
 		.catch(function(error){
 			console.log(JSON.stringify(error));
 		});
-	}*/ /*else if (req.params.id==4){
+	}*/ else if (req.params.id==4){
 		//multi data with text
 		//all user
 		client.multicast(userList,{type:'text',text:(req.params.data||"test group")})
